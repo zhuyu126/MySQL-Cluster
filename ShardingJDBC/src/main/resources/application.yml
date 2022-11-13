@@ -1,0 +1,38 @@
+spring.shardingsphere.datasource.names: master,slave1,slave2,slave3
+# 配置主库
+spring.shardingsphere.datasource.master.type: com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.master.driverClassName: com.mysql.cj.jdbc.Driver
+spring.shardingsphere.datasource.master.jdbc-url: jdbc:mysql://192.168.58.4:3306/hello?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+spring.shardingsphere.datasource.master.username: root
+spring.shardingsphere.datasource.master.password: zy12260011
+# 配置第一个从库
+spring.shardingsphere.datasource.slave1.type: com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.slave1.driverClassName: com.mysql.cj.jdbc.Driver
+spring.shardingsphere.datasource.slave1.jdbc-url: jdbc:mysql://192.168.58.5:3306/hello?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+spring.shardingsphere.datasource.slave1.username: root
+spring.shardingsphere.datasource.slave1.password: zy12260011
+# 配置第二个从库
+spring.shardingsphere.datasource.slave2.type: com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.slave2.driverClassName: com.mysql.cj.jdbc.Driver
+spring.shardingsphere.datasource.slave2.jdbc-url: jdbc:mysql://192.168.58.6:3306/hello?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+spring.shardingsphere.datasource.slave2.username: root
+spring.shardingsphere.datasource.slave2.password: zy12260011
+# 配置第三个从库
+spring.shardingsphere.datasource.slave3.type: com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.slave3.driverClassName: com.mysql.cj.jdbc.Driver
+spring.shardingsphere.datasource.slave3.jdbc-url: jdbc:mysql://192.168.58.7:3306/hello?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+spring.shardingsphere.datasource.slave3.username: root
+spring.shardingsphere.datasource.slave3.password: zy12260011
+
+
+# 配置读写分离
+# 配置从库选择策略，提供轮询与随机，这里选择用轮询
+sharding.jdbc.config.masterslave.load-balance-algorithm-type: round_robin
+spring.shardingsphere.masterslave.name: ms
+spring.shardingsphere.masterslave.master-data-source-name: master
+spring.shardingsphere.masterslave.slave-data-source-names: slave1,slave2,slave3
+
+
+# 打印执行sql
+spring.shardingsphere.props.sql-show: true
+mybatis-plus.configuration.log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
